@@ -9,7 +9,7 @@ signature sandwiches, which are pre-made options that customers can still change
 
 After an order is finished, the program creates a receipt with all the order details and 
 saves it as a text file with the date and time. The project uses basic object-oriented 
-programming ideas, such as using classes and inheritance, to organize sandwiches, toppings, 
+programming ideas, such as using classes inheritance and polymorphism, to organize sandwiches, toppings, 
 and other parts of the order.
 
 ## User Stories
@@ -18,17 +18,15 @@ and other parts of the order.
 - As a customer, I want to customize my own sandwich with different bread type, bread size and toppings to my liking.
 - As an employee, I want to see the total cost of the whole order.
 - As an employee, I want the order to be saved as a receipt file when it’s finished.
-## Setup
 
+## Setup
 Instructions on how to set up and run the project using IntelliJ IDEA.
 
 ### Prerequisites
-
 - IntelliJ IDEA: Ensure you have IntelliJ IDEA installed, which you can download from [here](https://www.jetbrains.com/idea/download/).
 - Java SDK: Make sure Java SDK (version 17 or above) is installed and properly configured in IntelliJ.
 
 ### Running the Application in IntelliJ
-
 Follow these steps to get your application running within IntelliJ IDEA:
 
 1. Open IntelliJ IDEA.
@@ -38,7 +36,6 @@ Follow these steps to get your application running within IntelliJ IDEA:
 5. Right-click on the file and select 'Run 'YourMainClassName.main()'' to start the application.
 
 ## Technologies Used
-
 - Java 17
 - Object-Oriented Programming (OOP)
 - Classes, inheritance, polymorphism, abstract classes
@@ -50,21 +47,17 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - (ArrayList, List) for managing toppings and order items
 
 ## Demo
-
-
+[Demo Video](demo-video.mkv)
 
 ## Future Work
-
 - Add tax calculation and discount/promo features
 - Implement a graphical user interface
 - Add real-time order queue for kitchen display
 - 
 ## Resources
-
 - [Java Language Documentation](https://docs.oracle.com/javase/8/docs/api/)
 - Class notes
 
 ## Thanks
-
 - Thank you to Raymond Maroun for continuous support and guidance.
 
