@@ -43,7 +43,8 @@ public class UserInterface {
             System.out.println("1) Add Sandwich");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Chips");
-            System.out.println("4) Checkout");
+            System.out.println("4) View Order");
+            System.out.println("5) Checkout");
             System.out.println("0) Cancel Order");
             System.out.print("Choose an option: ");
 
@@ -60,6 +61,9 @@ public class UserInterface {
                     addChips();
                     break;
                 case 4:
+                    System.out.println(currentOrder);
+                    break;
+                case 5:
                     checkout();
                     inOrder = false;
                     break;
@@ -133,7 +137,11 @@ public class UserInterface {
     }
 
     public void addChips() {
+        String flavor = promptChipsFlavor();
 
+        Chips chips = new Chips(flavor);
+        currentOrder.addItem(chips);
+        System.out.println("Chips added to order.");
     }
 
     public void checkout() {
@@ -173,23 +181,16 @@ public class UserInterface {
 
             int choice = readInt();
 
-            String flavor = switch (choice) {
-                case 1 -> "Coke";
-                case 2 -> "Sprite";
-                case 3 -> "Iced Tea";
-                case 4 -> "Lemonade";
-                default -> null;
+            switch (choice) {
+                case 1: return "Coke";
+                case 2: return "Sprite";
+                case 3: return "Iced Tea";
+                case 4: return "Lemonade";
+                default:
+                    System.out.println("Invalid choice, please try again!");
             };
-
-            if (flavor != null) {
-                return flavor;
-            }
-
-            System.out.println("Invalid flavor. Try again.");
         }
     }
-
-
 
     private String promptDrinkSize() {
         while (true) {
@@ -205,7 +206,7 @@ public class UserInterface {
                 case 2: return "Medium";
                 case 3: return "Large";
                 default:
-                    System.out.println("Invalid size. Try again.");
+                    System.out.println("Invalid choice, please try again!");
             }
         }
     }
@@ -224,7 +225,7 @@ public class UserInterface {
                 case 2: return 8;
                 case 3: return 12;
                 default:
-                    System.out.println("Invalid size. Try again.");
+                    System.out.println("Invalid choice, please try again!");
             }
         }
     }
@@ -245,7 +246,7 @@ public class UserInterface {
                 case 3: return "Rye";
                 case 4: return "Wrap";
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Invalid choice, please try again!");
             }
         }
     }
@@ -257,7 +258,7 @@ public class UserInterface {
             System.out.println("2) Provolone");
             System.out.println("3) Cheddar");
             System.out.println("4) Swiss");
-            System.out.print("Choice: ");
+            System.out.print("Enter your choice: ");
 
             int choice = readInt();
             switch (choice) {
@@ -266,7 +267,26 @@ public class UserInterface {
                 case 3: return "cheddar";
                 case 4: return "swiss";
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Invalid choice, please try again!");
+            }
+        }
+    }
+
+    private String promptChipsFlavor() {
+        while (true) {
+            System.out.println("Choose chips flavor: ");
+            System.out.println("1) Classic");
+            System.out.println("2) Sour Cream & Onion");
+            System.out.println("3) BBQ");
+            System.out.print("Enter your choice: ");
+
+            int choice = readInt();
+            switch (choice) {
+                case 1: return "Classic";
+                case 2: return "Sour Cream & Onion";
+                case 3: return "BBQ";
+                default:
+                    System.out.println("Invalid choice, please try again!");
             }
         }
     }
@@ -280,7 +300,7 @@ public class UserInterface {
             System.out.println("4) Roast Beef");
             System.out.println("5) Chicken");
             System.out.println("6) Bacon");
-            System.out.print("Choice: ");
+            System.out.print("Enter your choice: ");
 
             int choice = readInt();
             switch (choice) {
@@ -291,7 +311,7 @@ public class UserInterface {
                 case 5: return "chicken";
                 case 6: return "bacon";
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Invalid choice, please try again!");
             }
         }
     }
@@ -308,7 +328,7 @@ public class UserInterface {
             System.out.println("7) Pickles");
             System.out.println("8) Guacamole");
             System.out.println("9) Mushrooms");
-            System.out.print("Choice: ");
+            System.out.print("Enter your choice: ");
 
             int choice = readInt();
             switch (choice) {
@@ -322,7 +342,7 @@ public class UserInterface {
                 case 8: return "guacamole";
                 case 9: return "mushrooms";
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Invalid choice, please try again!");
             }
         }
     }
@@ -336,7 +356,7 @@ public class UserInterface {
             System.out.println("4) Ranch");
             System.out.println("5) Thousand Islands");
             System.out.println("6) Vinaigrette");
-            System.out.print("Choice: ");
+            System.out.print("Enter your choice: ");
 
             int choice = readInt();
             switch (choice) {
@@ -347,7 +367,7 @@ public class UserInterface {
                 case 5: return "thousand islands";
                 case 6: return "vinaigrette";
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Invalid choice, please try again!");
             }
         }
     }
