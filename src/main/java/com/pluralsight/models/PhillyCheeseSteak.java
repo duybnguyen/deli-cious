@@ -2,7 +2,7 @@ package com.pluralsight.models;
 
 public class PhillyCheeseSteak extends Sandwich {
 
-    public PhillyCheeseSteakSandwich() {
+    public PhillyCheeseSteak() {
         super("Philly Cheese Steak", "White", 8, true);
 
         addTopping(new Meat("steak", false));

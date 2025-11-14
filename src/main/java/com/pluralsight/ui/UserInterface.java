@@ -80,8 +80,24 @@ public class UserInterface {
         }
     }
 
+
     public void addSandwich() {
         System.out.println("\n===== Add Sandwich =====");
+        System.out.println("1) Custom Sandwich");
+        System.out.println("2) Signature Sandwich");
+        System.out.print("Choose an option: ");
+
+        int choice = readInt();
+
+        switch (choice) {
+            case 1 -> addCustomSandwich();
+            case 2 -> addSignatureSandwich();
+            default -> System.out.println("Invalid choice, returning to order menu.");
+        }
+    }
+
+    private void addCustomSandwich() {
+        System.out.println("\n===== Add Custom Sandwich =====");
 
         int size = promptSandwichSize();
         String bread = promptBreadType();
@@ -121,8 +137,90 @@ public class UserInterface {
         }
 
         currentOrder.addItem(sandwich);
-        System.out.println("Sandwich added to order.");
+        System.out.println("Custom sandwich added to order.");
     }
+
+    private void addSignatureSandwich() {
+        System.out.println("\n===== Signature Sandwiches =====");
+        System.out.println("1) BLT");
+        System.out.println("2) Philly Cheese Steak");
+        System.out.print("Choose a signature sandwich: ");
+
+        int choice = readInt();
+        Sandwich sandwich;
+
+        switch (choice) {
+            case 1 -> sandwich = new BLTSandwich();
+            case 2 -> sandwich = new PhillyCheeseSteak();
+            default -> {
+                System.out.println("Invalid choice, returning to order menu.");
+                return;
+            }
+        }
+
+        System.out.println("\nYou chose:");
+        System.out.println(sandwich);
+
+        if (promptYesNo("Would you like to customize this sandwich? (y/n): ")) {
+            customizeSandwich(sandwich);
+        }
+
+        currentOrder.addItem(sandwich);
+        System.out.println("Signature sandwich added to order.");
+    }
+
+    private void customizeSandwich(Sandwich sandwich) {
+        boolean customizing = true;
+
+        while (customizing) {
+            System.out.println("\nCurrent Sandwich:");
+            System.out.println(sandwich);
+
+            System.out.println("\nCustomize:");
+            System.out.println("1) Remove a topping");
+            System.out.println("2) Add meat");
+            System.out.println("3) Add cheese");
+            System.out.println("4) Add regular topping");
+            System.out.println("5) Add sauce");
+            System.out.println("0) Done customizing");
+            System.out.print("Choose an option: ");
+
+            int choice = readInt();
+
+            switch (choice) {
+                case 1 -> {
+                    System.out.print("Enter the name of the topping to remove: ");
+                    String name = scanner.nextLine().trim();
+                    sandwich.removeTopping(name);
+                }
+                case 2 -> {
+                    String meatName = promptMeatChoice();
+                    boolean isExtra = promptYesNo("Extra " + meatName + "? (y/n): ");
+                    sandwich.addTopping(new Meat(meatName, isExtra));
+                }
+                case 3 -> {
+                    String cheeseName = promptCheeseChoice();
+                    boolean isExtra = promptYesNo("Extra " + cheeseName + "? (y/n): ");
+                    sandwich.addTopping(new Cheese(cheeseName, isExtra));
+                }
+                case 4 -> {
+                    String regName = promptRegularToppingChoice();
+                    boolean isExtra = promptYesNo("Extra " + regName + "? (y/n): ");
+                    sandwich.addTopping(new RegularTopping(regName, isExtra));
+                }
+                case 5 -> {
+                    String sauceName = promptSauceChoice();
+                    sandwich.addTopping(new Sauce(sauceName));
+                }
+                case 0 -> customizing = false;
+                default -> System.out.println("Invalid choice, please try again!");
+            }
+        }
+    }
+
+
+
+
 
     public void addDrink() {
         System.out.println("\n===== Add Drink =====");

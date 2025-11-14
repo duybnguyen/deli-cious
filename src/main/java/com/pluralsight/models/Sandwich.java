@@ -66,6 +66,10 @@ public class Sandwich extends Item {
         toppings.add(topping);
     }
 
+    public void removeTopping(String name) {
+        toppings.removeIf(t -> t.getName().equalsIgnoreCase(name));
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
