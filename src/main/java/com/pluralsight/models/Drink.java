@@ -1,7 +1,7 @@
 package com.pluralsight.models;
 
 public class Drink extends Item {
-    String size;
+    private String size;
 
     public Drink(String name, String size) {
         super(name);
@@ -23,5 +23,11 @@ public class Drink extends Item {
             case "Medium" -> 2.5;
             default -> 2.0;
         };
+    }
+
+    @Override
+    public String toString() {
+        return "Drink (" + getSize() + ") - " +
+                String.format("$%.2f", getPrice());
     }
 }

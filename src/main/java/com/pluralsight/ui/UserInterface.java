@@ -12,7 +12,7 @@ public class UserInterface {
         boolean running = true;
 
         while (running) {
-            System.out.println("===== Welcome to DELI-cious =====");
+            System.out.println("===== Welcome to Deli-cious =====");
             System.out.println("1) New Order");
             System.out.println("0) Exit");
             System.out.print("Choose an option: ");
@@ -39,7 +39,7 @@ public class UserInterface {
         boolean inOrder = true;
 
         while (inOrder) {
-            System.out.println("===== Current Order Menu =====");
+            System.out.println("\n===== Current Order Menu =====");
             System.out.println("1) Add Sandwich");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Chips");
@@ -61,7 +61,7 @@ public class UserInterface {
                     addChips();
                     break;
                 case 4:
-                    System.out.println(currentOrder);
+                    showOrder();
                     break;
                 case 5:
                     checkout();
@@ -81,7 +81,7 @@ public class UserInterface {
     }
 
     public void addSandwich() {
-        System.out.println("===== Add Sandwich =====");
+        System.out.println("\n===== Add Sandwich =====");
 
         int size = promptSandwichSize();
         String bread = promptBreadType();
@@ -89,7 +89,7 @@ public class UserInterface {
 
         Sandwich sandwich = new Sandwich("Custom", bread, size, toasted);
 
-        boolean addMoreMeat = promptYesNo("Add meat toppings? (y/n): ");
+        boolean addMoreMeat = promptYesNo("Add meat? (y/n): ");
         while (addMoreMeat) {
             String meatName = promptMeatChoice();
             boolean isExtra = promptYesNo("Extra " + meatName + "? (y/n): ");
@@ -97,7 +97,7 @@ public class UserInterface {
             addMoreMeat = promptYesNo("Add another meat? (y/n): ");
         }
 
-        boolean addMoreCheese = promptYesNo("Add cheese toppings? (y/n): ");
+        boolean addMoreCheese = promptYesNo("Add cheese? (y/n): ");
         while (addMoreCheese) {
             String cheeseName = promptCheeseChoice();
             boolean isExtra = promptYesNo("Extra " + cheeseName + "? (y/n): ");
@@ -105,7 +105,7 @@ public class UserInterface {
             addMoreCheese = promptYesNo("Add another cheese? (y/n): ");
         }
 
-        boolean addRegular = promptYesNo("Add regular toppings (lettuce, tomato, etc.)? (y/n): ");
+        boolean addRegular = promptYesNo("Add regular toppings? (y/n): ");
         while (addRegular) {
             String regToppingName = promptRegularToppingChoice();
             boolean isExtra = promptYesNo("Extra " + regToppingName + "? (y/n): ");
@@ -125,7 +125,7 @@ public class UserInterface {
     }
 
     public void addDrink() {
-        System.out.println("===== Add Drink =====");
+        System.out.println("\n===== Add Drink =====");
 
         String flavor = promptDrinkFlavor();
         String size = promptDrinkSize();
@@ -145,8 +145,26 @@ public class UserInterface {
     }
 
     public void checkout() {
+        showOrder();
+        while (true) {
+            System.out.print("1) Confirm   0) Cancel Order: ");
+            String input = scanner.nextLine().trim();
 
+            if (input.equals("1")) {
+                fileManager.saveTransaction(currentOrder);
+                System.out.println("Order confirmed. Receipt saved in receipts folder.");
+                currentOrder = null;
+                break;
+            } else if (input.equals("0")) {
+                System.out.println("Order cancelled. Nothing was saved.");
+                currentOrder = null;
+                break;
+            } else {
+                System.out.println("Invalid choice. Please enter 1 or 0.");
+            }
+        }
     }
+
 
     // Helper Methods
     private int readInt() {
@@ -158,6 +176,21 @@ public class UserInterface {
                 System.out.print("Please enter a valid number: ");
             }
         }
+    }
+
+    private void showOrder() {
+        if (currentOrder == null || currentOrder.getItems().isEmpty()) {
+            System.out.println("Unable to checkout, there are no items in your order.");
+            return;
+        }
+
+        System.out.println("\n===== ORDER DETAILS =====");
+        for (Item item : currentOrder.getItems()) {
+            System.out.println(item);
+        }
+        System.out.println("-------------------------");
+        System.out.printf("TOTAL: $%.2f%n", currentOrder.getTotalPrice());
+        System.out.println("=========================");
     }
 
     private boolean promptYesNo(String prompt) {
@@ -194,7 +227,7 @@ public class UserInterface {
 
     private String promptDrinkSize() {
         while (true) {
-            System.out.println("Choose drink size:");
+            System.out.println("\nChoose drink size:");
             System.out.println("1) Small");
             System.out.println("2) Medium");
             System.out.println("3) Large");
@@ -232,7 +265,7 @@ public class UserInterface {
 
     private String promptBreadType() {
         while (true) {
-            System.out.println("Choose bread type:");
+            System.out.println("\nChoose bread type:");
             System.out.println("1) White");
             System.out.println("2) Wheat");
             System.out.println("3) Rye");
@@ -274,7 +307,7 @@ public class UserInterface {
 
     private String promptChipsFlavor() {
         while (true) {
-            System.out.println("Choose chips flavor: ");
+            System.out.println("\nChoose chips flavor: ");
             System.out.println("1) Classic");
             System.out.println("2) Sour Cream & Onion");
             System.out.println("3) BBQ");
@@ -349,7 +382,7 @@ public class UserInterface {
 
     private String promptSauceChoice() {
         while (true) {
-            System.out.println("Choose sauce:");
+            System.out.println("\nChoose sauce:");
             System.out.println("1) Mayo");
             System.out.println("2) Mustard");
             System.out.println("3) Ketchup");

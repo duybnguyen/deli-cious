@@ -65,4 +65,29 @@ public class Sandwich extends Item {
     public void addTopping(Topping topping) {
         toppings.add(topping);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Sandwich (")
+                .append(getSandwichSize()).append("\", ")
+                .append(getBreadType()).append(", ")
+                .append(isToasted() ? "Toasted" : "Not Toasted")
+                .append(")").append("\n");
+
+        for (Topping topping : toppings) {
+            sb.append("   - ").append(topping.getName());
+
+            if (topping instanceof PremiumTopping pt && pt.isExtra()) {
+                sb.append(" (extra)");
+            }
+
+            sb.append("\n");
+        }
+
+        sb.append(String.format("   Price: $%.2f", getPrice()));
+
+        return sb.toString();
+    }
 }

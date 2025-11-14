@@ -16,7 +16,7 @@ public class OrderFileManager {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
 
-            writer.write("==== DELI-cious Receipt ====");
+            writer.write("======= Deli-cious Receipt =======");
             writer.newLine();
             writer.write("Order Timestamp: " + timestamp);
             writer.newLine();
@@ -30,7 +30,7 @@ public class OrderFileManager {
             writer.newLine();
             writer.write(String.format("TOTAL: $%.2f", order.getTotalPrice()));
             writer.newLine();
-            writer.write("============================");
+            writer.write("==================================");
 
         } catch (IOException e) {
             System.out.println("Error writing receipt: " + e.getMessage());
