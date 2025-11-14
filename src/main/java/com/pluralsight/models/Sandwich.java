@@ -11,6 +11,9 @@ public class Sandwich extends Item {
 
     public Sandwich(String name, String breadType, int sandwichSize, boolean isToasted) {
         super(name);
+        this.breadType = breadType;
+        this.sandwichSize = sandwichSize;
+        this.isToasted = isToasted;
     }
 
     public String getBreadType() {
@@ -43,7 +46,20 @@ public class Sandwich extends Item {
 
     @Override
     public double getPrice() {
-        return 0.0;
+        double total = 0;
+
+        switch (sandwichSize) {
+            case 4 -> total += 5.50;
+            case 8 -> total += 7.00;
+            case 12 -> total += 8.50;
+            default -> System.out.println("Invalid sandwich size!");
+        }
+
+        for (Topping topping : toppings) {
+            total += topping.getPrice(sandwichSize);
+        }
+
+        return total;
     }
 
     public void addTopping(Topping topping) {

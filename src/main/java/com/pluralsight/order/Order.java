@@ -28,13 +28,6 @@ public class Order {
         return total;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "items=" + items +
-                '}';
-    }
-
     public boolean isEmpty() {
         return items.isEmpty();
     }
