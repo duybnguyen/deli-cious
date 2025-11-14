@@ -12,6 +12,9 @@ saves it as a text file with the date and time. The project uses basic object-or
 programming ideas, such as using classes inheritance and polymorphism, to organize sandwiches, toppings, 
 and other parts of the order.
 
+## Diagram
+[Diagram](diagram.PNG)
+
 ## User Stories
 - As an employee, I want to see all items already added so I can check the order at any time.
 - As an employee, I want to add a sandwich, chips and drinks to the order so the customer can customize what they want.
