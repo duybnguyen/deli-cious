@@ -33,10 +33,6 @@ public class Sandwich extends Item {
         return toppings;
     }
 
-    public void setToppings(List<Topping> toppings) {
-        this.toppings = toppings;
-    }
-
     public boolean isToasted() {
         return isToasted;
     }
@@ -50,4 +46,7 @@ public class Sandwich extends Item {
         return 0.0;
     }
 
+    public void addTopping(Topping topping) {
+        toppings.add(topping);
+    }
 }
