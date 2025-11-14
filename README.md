@@ -47,7 +47,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - (ArrayList, List) for managing toppings and order items
 
 ## Demo
-[Demo Video](demo-video.mkv)
+[Demo Video](https://drive.google.com/file/d/1I9pxaA00KvjnkLhUqlgIpew6YHYvxvGJ/view?usp=sharing)
 
 ## Future Work
 - Add tax calculation and discount/promo features
