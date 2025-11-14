@@ -12,7 +12,7 @@ public class UserInterface {
         boolean running = true;
 
         while (running) {
-            System.out.println("==== Welcome to DELI-cious ====");
+            System.out.println("===== Welcome to DELI-cious =====");
             System.out.println("1) New Order");
             System.out.println("0) Exit");
             System.out.print("Choose an option: ");
@@ -39,7 +39,7 @@ public class UserInterface {
         boolean inOrder = true;
 
         while (inOrder) {
-            System.out.println("==== Current Order Menu ====");
+            System.out.println("===== Current Order Menu =====");
             System.out.println("1) Add Sandwich");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Chips");
@@ -77,7 +77,7 @@ public class UserInterface {
     }
 
     public void addSandwich() {
-        System.out.println("=== Add Sandwich ===");
+        System.out.println("===== Add Sandwich =====");
 
         int size = promptSandwichSize();
         String bread = promptBreadType();
@@ -121,7 +121,15 @@ public class UserInterface {
     }
 
     public void addDrink() {
+        System.out.println("===== Add Drink =====");
 
+        String flavor = promptDrinkFlavor();
+        String size = promptDrinkSize();
+
+        Drink drink = new Drink(size, flavor);
+
+        currentOrder.addItem(drink);
+        System.out.println("Drink added to order.");
     }
 
     public void addChips() {
@@ -154,13 +162,61 @@ public class UserInterface {
         }
     }
 
+    private String promptDrinkFlavor() {
+        while (true) {
+            System.out.println("Choose drink flavor:");
+            System.out.println("1) Coke");
+            System.out.println("2) Sprite");
+            System.out.println("3) Iced Tea");
+            System.out.println("4) Lemonade");
+            System.out.print("Enter Your Choice: ");
+
+            int choice = readInt();
+
+            String flavor = switch (choice) {
+                case 1 -> "Coke";
+                case 2 -> "Sprite";
+                case 3 -> "Iced Tea";
+                case 4 -> "Lemonade";
+                default -> null;
+            };
+
+            if (flavor != null) {
+                return flavor;
+            }
+
+            System.out.println("Invalid flavor. Try again.");
+        }
+    }
+
+
+
+    private String promptDrinkSize() {
+        while (true) {
+            System.out.println("Choose drink size:");
+            System.out.println("1) Small");
+            System.out.println("2) Medium");
+            System.out.println("3) Large");
+            System.out.print("Enter Your Choice: ");
+
+            int choice = readInt();
+            switch (choice) {
+                case 1: return "Small";
+                case 2: return "Medium";
+                case 3: return "Large";
+                default:
+                    System.out.println("Invalid size. Try again.");
+            }
+        }
+    }
+
     private int promptSandwichSize() {
         while (true) {
             System.out.println("Choose sandwich size:");
             System.out.println("1) 4\"");
             System.out.println("2) 8\"");
             System.out.println("3) 12\"");
-            System.out.print("Choice: ");
+            System.out.print("Enter Your Choice: ");
 
             int choice = readInt();
             switch (choice) {
@@ -180,7 +236,7 @@ public class UserInterface {
             System.out.println("2) Wheat");
             System.out.println("3) Rye");
             System.out.println("4) Wrap");
-            System.out.print("Choice: ");
+            System.out.print("Enter Your Choice: ");
 
             int choice = readInt();
             switch (choice) {
